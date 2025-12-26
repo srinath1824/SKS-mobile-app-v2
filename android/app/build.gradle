@@ -25,7 +25,6 @@ if (flutterVersionName == null) {
 android {
     namespace "com.spiritual.app"
     compileSdk 34
-    ndkVersion "25.1.8937393"
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -43,32 +42,13 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true
-        
-        // Performance optimizations
-        renderscriptTargetApi 21
-        renderscriptSupportModeEnabled true
-        
-        // Reduce APK size
-        ndk {
-            abiFilters 'arm64-v8a', 'armeabi-v7a'
-        }
     }
 
     buildTypes {
         release {
             signingConfig signingConfigs.debug
-            minifyEnabled true
-            shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            
-            // Performance optimizations
-            zipAlignEnabled true
-            crunchPngs false
-            
-            // Build optimizations
-            debuggable false
-            jniDebuggable false
-            renderscriptDebuggable false
+            minifyEnabled false
+            shrinkResources false
         }
         debug {
             minifyEnabled false
@@ -77,32 +57,15 @@ android {
         }
     }
     
-    // Prevent build issues
     packagingOptions {
         pickFirst '**/libc++_shared.so'
         pickFirst '**/libjsc.so'
-        exclude 'META-INF/DEPENDENCIES'
-        exclude 'META-INF/LICENSE'
-        exclude 'META-INF/LICENSE.txt'
-        exclude 'META-INF/NOTICE'
-        exclude 'META-INF/NOTICE.txt'
     }
     
-    // Lint options for better performance
     lintOptions {
         disable 'InvalidPackage'
         checkReleaseBuilds false
         abortOnError false
-    }
-    
-    // Splits for smaller APK
-    splits {
-        abi {
-            enable true
-            reset()
-            include 'arm64-v8a', 'armeabi-v7a'
-            universalApk false
-        }
     }
 }
 
