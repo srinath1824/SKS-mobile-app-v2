@@ -1,27 +1,20 @@
 Try `flutter pub outdated` for more information.
 Upgrading build.gradle
 Upgrading build.gradle
-Warning: Flutter support for your project's Gradle version (8.4.0) will soon be dropped. Please upgrade your Gradle version to a version of at least 8.7.0 soon.
-Alternatively, use the flag "--android-skip-build-dependency-validation" to bypass this check.
-
-Potential fix: Your project's gradle version is typically defined in the gradle wrapper file. By default, this can be found at E:\SKS\SKS-mobile-app-v2\android/gradle/wrapper/gradle-wrapper.properties.
-For more information, see https://docs.gradle.org/current/userguide/gradle_wrapper.html.
-
-Warning: Flutter support for your project's Android Gradle Plugin version (Android Gradle Plugin version 8.1.2) will soon be dropped. Please upgrade your Android Gradle Plugin version to a version of at least Android Gradle Plugin version 8.6.0 soon.
-Alternatively, use the flag "--android-skip-build-dependency-validation" to bypass this check.
-
-Potential fix: Your project's AGP version is typically defined in the plugins block of the `settings.gradle` file (E:\SKS\SKS-mobile-app-v2\android/settings.gradle), by a plugin with the id of com.android.application.
-If you don't see a plugins block, your project was likely created with an older template version. In this case it is most likely defined in the top-level build.gradle file (E:\SKS\SKS-mobile-app-v2\android/build.gradle) by the following line in the dependencies block of the buildscript: "classpath 'com.android.tools.build:gradle:<version>'".
-
-Warning: The plugin audio_service requires Android SDK version 35 or higher.
-For more information about build configuration, see https://flutter.dev/to/review-gradle-config.
+Checking the license for package NDK (Side by side) 26.1.10909125 in C:\Users\VENKAT\AppData\Local\Android\sdk\licenses
+License for package NDK (Side by side) 26.1.10909125 accepted.
+Preparing "Install NDK (Side by side) 26.1.10909125 v.26.1.10909125".
+"Install NDK (Side by side) 26.1.10909125 v.26.1.10909125" ready.
+Installing NDK (Side by side) 26.1.10909125 in C:\Users\VENKAT\AppData\Local\Android\sdk\ndk\26.1.10909125
+"Install NDK (Side by side) 26.1.10909125 v.26.1.10909125" complete.
+"Install NDK (Side by side) 26.1.10909125 v.26.1.10909125" finished.
 
 FAILURE: Build failed with an exception.
 
 * What went wrong:
 A problem occurred configuring project ':flutter_inappwebview'.
 > Could not create an instance of type com.android.build.api.variant.impl.LibraryVariantBuilderImpl.
-   > Namespace not specified. Specify a namespace in the module's build file. See https://d.android.com/r/tools/upgrade-assistant/set-namespace for information about setting the namespace.
+   > Namespace not specified. Specify a namespace in the module's build file: C:\Users\VENKAT\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_inappwebview-5.8.0\android\build.gradle. See https://d.android.com/r/tools/upgrade-assistant/set-namespace for information about setting the namespace.
 
      If you've specified the package attribute in the source AndroidManifest.xml, you can use the AGP Upgrade Assistant to migrate to the namespace value in the build file. Refer to https://d.android.com/r/tools/upgrade-assistant/agp-upgrade-assistant for general information about using the AGP Upgrade Assistant.
 
@@ -31,6 +24,6 @@ A problem occurred configuring project ':flutter_inappwebview'.
 > Run with --scan to get full insights.
 > Get more help at https://help.gradle.org.
 
-BUILD FAILED in 3m 36s
-Running Gradle task 'assembleDebug'...                            217.1s
+BUILD FAILED in 6m 22s
+Running Gradle task 'assembleDebug'...                            383.2s
 Gradle task assembleDebug failed with exit code 1
