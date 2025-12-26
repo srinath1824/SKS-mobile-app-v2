@@ -1,26 +1,42 @@
 flutter create --project-name spiritual_app --org com.spiritual.app --platforms android temp_project
 
-
 22 packages have newer versions incompatible with dependency constraints.
 Try `flutter pub outdated` for more information.
 Upgrading build.gradle
 Upgrading build.gradle
 
-FAILURE: Build failed with an exception.
+FAILURE: Build completed with 2 failures.
 
+1: Task failed with an exception.
+-----------
 * Where:
-Build file 'E:\SKS\SKS-mobile-app-v2\android\app\build.gradle' line: 14
+Script 'C:\flutter\flutter\packages\flutter_tools\gradle\flutter.gradle' line: 9
 
 * What went wrong:
-A problem occurred evaluating project ':app'.
-> Plugin with id 'com.android.application' not found.
+A problem occurred evaluating script.
+> You are applying Flutter's main Gradle plugin imperatively using the apply script method, which is not possible anymore. Migrate to applying Gradle plugins with the declarative plugins block: https://flutter.dev/to/flutter-gradle-plugin-apply
+
 
 * Try:
 > Run with --stacktrace option to get the stack trace.
 > Run with --info or --debug option to get more log output.
 > Run with --scan to get full insights.
 > Get more help at https://help.gradle.org.
+==============================================================================
 
-BUILD FAILED in 1s
-Running Gradle task 'assembleRelease'...                         1,715ms
+2: Task failed with an exception.
+-----------
+* What went wrong:
+A problem occurred configuring project ':app'.
+> compileSdkVersion is not specified. Please add it to build.gradle
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+==============================================================================
+
+BUILD FAILED in 53s
+Running Gradle task 'assembleRelease'...                           54.4s
 Gradle task assembleRelease failed with exit code 1
