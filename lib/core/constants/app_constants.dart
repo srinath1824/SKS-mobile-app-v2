@@ -1,0 +1,74 @@
+class AppConstants {
+  // App Info
+  static const String appName = 'SKS';
+  
+  // Navigation
+  static const String homeRoute = '/';
+  static const String learningsRoute = '/learnings';
+  static const String gurujiConnectRoute = '/guruji-connect';
+  static const String eventsRoute = '/events';
+  static const String notificationsRoute = '/notifications';
+  
+  // Mock Data
+  static const String gurujiImageUrl = 'assets/images/Guruji_Meditation.PNG';
+  
+  static const String aboutGuruji = '''Our revered Guru is an enlightened Sadguru who has dedicated over three decades to the study and practice of Kundalini Sadhana. Having attained the highest states of consciousness, the Guru now shares this divine knowledge to help humanity transcend its limitations and realize its true potential.''';
+  
+  static const List<String> dailyQuotes = [
+    'Meditation is the most natural state of mind.',
+    'Meditation is not a necessity, it is an emergency.',
+    "I'm not here to prove that I'm God, I'm here to prove that you are God.",
+    'There is no difference between Siva and Shakthi; Siva is Shakthi and Shakthi is Siva.',
+    'You are already enlightened, just realize it.',
+    'Meditation is Medication!',
+    'Spirituality is Practicality!'
+  ];
+  
+  static const List<Map<String, String>> meditationMusic = [
+    {'title': 'Daily Meditation', 'duration': '15:00', 'url': 'assets/audio/Sivoham_Mantra_15min_guided_Meditation.mp4'},
+    // {'title': 'Om Chanting', 'duration': '10:30', 'url': ''},
+    // {'title': 'Peaceful Sleep', 'duration': '20:00', 'url': ''},
+    // {'title': 'Chakra Healing', 'duration': '25:00', 'url': ''},
+  ];
+  
+  static const List<Map<String, String>> bhajans = [
+    {'title': 'Gundello gudi', 'artist': 'Divine Voices', 'imageUrl': 'assets/images/Guruji_smile.jpeg', 'url': 'assets/audio/Gundello_gudi_song.mp4'},
+    {'title': 'Nirvana Shatkam', 'artist': 'Sacred Sounds', 'imageUrl': 'assets/images/Guruji_Meditation.PNG', 'url': 'assets/audio/Nirvana_Shatkam_song.mp4'},
+    {'title': 'Jeeveswara yogi taluva', 'artist': 'Temple Bells', 'imageUrl': 'assets/images/Guruji_logo.JPG', 'url': 'assets/audio/Jeeveswara_yogi_taluva_song.mp4'},
+  ];
+  
+  static const List<Map<String, String>> experienceVideos = [
+    {'title': 'Journey to Inner Peace', 'thumbnail': 'https://img.youtube.com/vi/58X02gfQVFc/maxresdefault.jpg', 'duration': '5:30', 'youtubeId': '58X02gfQVFc'},
+    {'title': 'Transformation Story', 'thumbnail': 'https://img.youtube.com/vi/IyH-7BgEy00/maxresdefault.jpg', 'duration': '10:31', 'youtubeId': 'IyH-7BgEy00'},
+    {'title': 'Divine Experiences', 'thumbnail': 'https://img.youtube.com/vi/R2goDa9crdM/maxresdefault.jpg', 'duration': '11:07', 'youtubeId': 'R2goDa9crdM'},
+    {'title': 'Spiritual Awakening', 'thumbnail': 'https://img.youtube.com/vi/Yp-BPYOGwrE/maxresdefault.jpg', 'duration': '8:45', 'youtubeId': 'Yp-BPYOGwrE'},
+    {'title': 'Kundalini Meditation', 'thumbnail': 'https://img.youtube.com/vi/wkjk-8MkKjE/maxresdefault.jpg', 'duration': '12:20', 'youtubeId': 'wkjk-8MkKjE'},
+  ];
+  
+  // YouTube Channel
+  static const String youtubeChannelUrl = 'https://www.youtube.com/@SivaKundaliniSadhanaChannel';
+  
+  static const List<Map<String, dynamic>> upcomingEvents = [
+    // {
+    //   'title': 'Meditation Retreat',
+    //   'date': '2024-02-15',
+    //   'location': 'Spiritual Center',
+    //   'imageUrl': 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600',
+    //   'description': 'A 3-day immersive meditation retreat',
+    // },
+    // {
+    //   'title': 'Satsang Evening',
+    //   'date': '2024-02-20',
+    //   'location': 'Community Hall',
+    //   'imageUrl': 'https://images.unsplash.com/photo-1447452001602-7090c7ab2db3?w=600',
+    //   'description': 'Evening of spiritual discourse and bhajans',
+    // },
+    // {
+    //   'title': 'Yoga Workshop',
+    //   'date': '2024-02-25',
+    //   'location': 'Wellness Center',
+    //   'imageUrl': 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600',
+    //   'description': 'Learn ancient yoga practices',
+    // },
+  ];
+}
