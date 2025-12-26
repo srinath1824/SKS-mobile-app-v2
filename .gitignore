@@ -1,6 +1,5 @@
 # Audio files (too large for GitHub)
-assets/audio/*.mp4
-assets/audio/*.mp3
+*.mp4
 
 # Flutter/Dart
 .dart_tool/

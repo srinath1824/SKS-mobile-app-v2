@@ -25,16 +25,15 @@ class AppConstants {
   ];
   
   static const List<Map<String, String>> meditationMusic = [
-    {'title': 'Daily Meditation', 'duration': '15:00', 'url': 'assets/audio/Sivoham_Mantra_15min_guided_Meditation.mp4'},
-    // {'title': 'Om Chanting', 'duration': '10:30', 'url': ''},
-    // {'title': 'Peaceful Sleep', 'duration': '20:00', 'url': ''},
-    // {'title': 'Chakra Healing', 'duration': '25:00', 'url': ''},
+    {'title': 'Daily Meditation (15 min)', 'duration': '15:00', 'url': 'assets/audio/Sivoham_Mantra_15min_guided_Meditation.mp3'},
+    {'title': 'Daily Meditation (10 min)', 'duration': '10:00', 'url': 'assets/audio/Sivoham_Mantra_10min_guided_Meditation.mp3'},
   ];
   
   static const List<Map<String, String>> bhajans = [
-    {'title': 'Gundello gudi', 'artist': 'Divine Voices', 'imageUrl': 'assets/images/Guruji_smile.jpeg', 'url': 'assets/audio/Gundello_gudi_song.mp4'},
-    {'title': 'Nirvana Shatkam', 'artist': 'Sacred Sounds', 'imageUrl': 'assets/images/Guruji_Meditation.PNG', 'url': 'assets/audio/Nirvana_Shatkam_song.mp4'},
-    {'title': 'Jeeveswara yogi taluva', 'artist': 'Temple Bells', 'imageUrl': 'assets/images/Guruji_logo.JPG', 'url': 'assets/audio/Jeeveswara_yogi_taluva_song.mp4'},
+    {'title': 'Gundello gudi', 'artist': 'Divine Voices', 'imageUrl': 'assets/images/Guruji_smile.jpeg', 'url': 'assets/audio/Gundello_gudi_song.mp3'},
+    {'title': 'Nirvana Shatkam', 'artist': 'Sacred Sounds', 'imageUrl': 'assets/images/Guruji_Meditation.PNG', 'url': 'assets/audio/Nirvana_Shatkam_song.mp3'},
+    {'title': 'Jeeveswara yogi taluva', 'artist': 'Temple Bells', 'imageUrl': 'assets/images/Guruji_logo.JPG', 'url': 'assets/audio/Jeeveswara_yogi_taluva_song.mp3'},
+    {'title': 'Pralaya kala beekara', 'artist': 'Sacred Chants', 'imageUrl': 'assets/images/Guruji_Meditation.PNG', 'url': 'assets/audio/Pralaya_kala_beekara_song.mp3'},
   ];
   
   static const List<Map<String, String>> experienceVideos = [
