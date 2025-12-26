@@ -1,15 +1,16 @@
 PS E:\SKS\SKS-mobile-app-v2> flutter build apk --release
 Upgrading build.gradle
+Upgrading build.gradle
 
 FAILURE: Build failed with an exception.
 
 * Where:
-Build file 'E:\SKS\SKS-mobile-app-v2\android\build.gradle' line: 13
+Script 'C:\flutter\flutter\packages\flutter_tools\gradle\app_plugin_loader.gradle' line: 9
 
 * What went wrong:
-A problem occurred evaluating root project 'android'.
-> Build completed with 1 failures.
-   > 'void com.android.build.api.variant.AndroidComponentsExtension.onVariants$default(com.android.build.api.variant.AndroidComponentsExtension, com.android.build.api.variant.VariantSelector, kotlin.jvm.functions.Function1, int, java.lang.Object)'
+A problem occurred evaluating script.
+> You are applying Flutter's app_plugin_loader Gradle plugin imperatively using the apply script method, which is not possible anymore. Migrate to applying Gradle plugins with the declarative plugins block: https://flutter.dev/to/flutter-gradle-plugin-apply
+
 
 * Try:
 > Run with --stacktrace option to get the stack trace.
@@ -17,6 +18,7 @@ A problem occurred evaluating root project 'android'.
 > Run with --scan to get full insights.
 > Get more help at https://help.gradle.org.
 
-BUILD FAILED in 1m 51s
-Running Gradle task 'assembleRelease'...                          112.2s
+BUILD FAILED in 7s
+Running Gradle task 'assembleRelease'...                            8.0s
 Gradle task assembleRelease failed with exit code 1
+PS E:\SKS\SKS-mobile-app-v2> 
