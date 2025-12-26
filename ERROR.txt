@@ -1,7 +1,5 @@
 rmdir /s /q C:\Users\VENKAT\.gradle\caches
 rmdir /s /q %USERPROFILE%\.gradle\caches
-
-22 packages have newer versions incompatible with dependency constraints.
 Try `flutter pub outdated` for more information.
 Upgrading build.gradle
 Upgrading build.gradle
@@ -9,16 +7,18 @@ Upgrading build.gradle
 FAILURE: Build failed with an exception.
 
 * What went wrong:
-Could not open settings generic class cache for settings file 'E:\SKS\SKS-mobile-app-v2\android\settings.gradle' (C:\Users\VENKAT\.gradle\caches\6.7.1\scripts\79canahq4gu6jj3h48dij7qyv).
+Could not open settings generic class cache for settings file 'E:\SKS\SKS-mobile-app-v2\android\settings.gradle' (C:\Users\VENKAT\.gradle\caches\8.0\scripts\atela96axqg43j44c0ddz9ezy).
 > BUG! exception in phase 'semantic analysis' in source unit '_BuildScript_' Unsupported class file major version 65
 
 * Try:
-Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
 
 * Get more help at https://help.gradle.org
 
-BUILD FAILED in 967ms
-Running Gradle task 'assembleRelease'...                         1,858ms
+BUILD FAILED in 40s
+Running Gradle task 'assembleRelease'...                           41.0s
 
 ┌─ Flutter Fix ────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 │ [!] Your project's Gradle version is incompatible with the Java version that Flutter is using for Gradle.                    │
