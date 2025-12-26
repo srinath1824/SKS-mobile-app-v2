@@ -1,22 +1,66 @@
-Try `flutter pub outdated` for more information.
-Upgrading build.gradle
-Upgrading build.gradle
-Checking the license for package NDK (Side by side) 26.1.10909125 in C:\Users\VENKAT\AppData\Local\Android\sdk\licenses
-License for package NDK (Side by side) 26.1.10909125 accepted.
-Preparing "Install NDK (Side by side) 26.1.10909125 v.26.1.10909125".
-"Install NDK (Side by side) 26.1.10909125 v.26.1.10909125" ready.
-Installing NDK (Side by side) 26.1.10909125 in C:\Users\VENKAT\AppData\Local\Android\sdk\ndk\26.1.10909125
-"Install NDK (Side by side) 26.1.10909125 v.26.1.10909125" complete.
-"Install NDK (Side by side) 26.1.10909125 v.26.1.10909125" finished.
+Your project is configured to compile against Android SDK 35, but the following plugin(s) require to be compiled against a higher Android SDK version:
+- path_provider_android compiles against Android SDK 36
+- sqflite_android compiles against Android SDK 36
+- url_launcher_android compiles against Android SDK 36
+Fix this issue by compiling against the highest Android SDK version (they are backward compatible).
+Add the following to E:\SKS\SKS-mobile-app-v2\android\app\build.gradle:
+
+    android {
+        compileSdk = 36
+        ...
+    }
+lib/core/widgets/optimized_network_image.dart:8:1: Error: Directives must appear before any declarations.
+Try moving the directive before any declarations.
+import 'package:shimmer/shimmer.dart';
+^^^^^^
+lib/core/widgets/optimized_network_image.dart:9:1: Error: Directives must appear before any declarations.
+Try moving the directive before any declarations.
+import '../theme/app_theme.dart';
+^^^^^^
+lib/core/widgets/optimized_network_image.dart:10:1: Error: Directives must appear before any declarations.
+Try moving the directive before any declarations.
+import '../utils/performance_utils.dart';
+^^^^^^
+lib/core/widgets/permission_screen.dart:123:19: Error: The getter 'SystemNavigator' isn't defined for the type '_PermissionScreenState'.
+ - '_PermissionScreenState' is from 'package:spiritual_app/core/widgets/permission_screen.dart' ('lib/core/widgets/permission_screen.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'SystemNavigator'.
+                  SystemNavigator.pop();
+                  ^^^^^^^^^^^^^^^
+lib/core/widgets/permission_screen.dart:139:21: Error: The getter 'SystemNavigator' isn't defined for the type '_PermissionScreenState'.
+ - '_PermissionScreenState' is from 'package:spiritual_app/core/widgets/permission_screen.dart' ('lib/core/widgets/permission_screen.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'SystemNavigator'.
+                    SystemNavigator.pop();
+                    ^^^^^^^^^^^^^^^
+lib/core/widgets/permission_screen.dart:154:11: Error: The getter 'SystemNavigator' isn't defined for the type '_PermissionScreenState'. 
+ - '_PermissionScreenState' is from 'package:spiritual_app/core/widgets/permission_screen.dart' ('lib/core/widgets/permission_screen.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'SystemNavigator'.
+          SystemNavigator.pop();
+          ^^^^^^^^^^^^^^^
+lib/core/widgets/permission_screen.dart:269:33: Error: The getter 'SystemNavigator' isn't defined for the type '_PermissionScreenState'. 
+ - '_PermissionScreenState' is from 'package:spiritual_app/core/widgets/permission_screen.dart' ('lib/core/widgets/permission_screen.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'SystemNavigator'.
+                                SystemNavigator.pop();
+                                ^^^^^^^^^^^^^^^
+warning: [options] source value 8 is obsolete and will be removed in a future release
+warning: [options] source value 8 is obsolete and will be removed in a future release
+warning: [options] target value 8 is obsolete and will be removed in a future release
+warning: [options] target value 8 is obsolete and will be removed in a future release
+warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.
+warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.
+3 warnings
+3 warnings
+warning: [options] source value 8 is obsolete and will be removed in a future release
+warning: [options] target value 8 is obsolete and will be removed in a future release
+warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.
+3 warnings
+Target kernel_snapshot_program failed: Exception
+
 
 FAILURE: Build failed with an exception.
 
 * What went wrong:
-A problem occurred configuring project ':flutter_inappwebview'.
-> Could not create an instance of type com.android.build.api.variant.impl.LibraryVariantBuilderImpl.
-   > Namespace not specified. Specify a namespace in the module's build file: C:\Users\VENKAT\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_inappwebview-5.8.0\android\build.gradle. See https://d.android.com/r/tools/upgrade-assistant/set-namespace for information about setting the namespace.
-
-     If you've specified the package attribute in the source AndroidManifest.xml, you can use the AGP Upgrade Assistant to migrate to the namespace value in the build file. Refer to https://d.android.com/r/tools/upgrade-assistant/agp-upgrade-assistant for general information about using the AGP Upgrade Assistant.
+Execution failed for task ':app:compileFlutterBuildDebug'.
+> Process 'command 'C:\flutter\flutter\bin\flutter.bat'' finished with non-zero exit value 1
 
 * Try:
 > Run with --stacktrace option to get the stack trace.
@@ -24,6 +68,6 @@ A problem occurred configuring project ':flutter_inappwebview'.
 > Run with --scan to get full insights.
 > Get more help at https://help.gradle.org.
 
-BUILD FAILED in 6m 22s
-Running Gradle task 'assembleDebug'...                            383.2s
+BUILD FAILED in 2m
+Running Gradle task 'assembleDebug'...                            121.9s
 Gradle task assembleDebug failed with exit code 1
