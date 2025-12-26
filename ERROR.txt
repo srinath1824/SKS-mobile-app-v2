@@ -1,66 +1,24 @@
-Your project is configured to compile against Android SDK 35, but the following plugin(s) require to be compiled against a higher Android SDK version:
-- path_provider_android compiles against Android SDK 36
-- sqflite_android compiles against Android SDK 36
-- url_launcher_android compiles against Android SDK 36
-Fix this issue by compiling against the highest Android SDK version (they are backward compatible).
-Add the following to E:\SKS\SKS-mobile-app-v2\android\app\build.gradle:
-
-    android {
-        compileSdk = 36
-        ...
-    }
-lib/core/widgets/optimized_network_image.dart:8:1: Error: Directives must appear before any declarations.
-Try moving the directive before any declarations.
-import 'package:shimmer/shimmer.dart';
-^^^^^^
-lib/core/widgets/optimized_network_image.dart:9:1: Error: Directives must appear before any declarations.
-Try moving the directive before any declarations.
-import '../theme/app_theme.dart';
-^^^^^^
-lib/core/widgets/optimized_network_image.dart:10:1: Error: Directives must appear before any declarations.
-Try moving the directive before any declarations.
-import '../utils/performance_utils.dart';
-^^^^^^
-lib/core/widgets/permission_screen.dart:123:19: Error: The getter 'SystemNavigator' isn't defined for the type '_PermissionScreenState'.
- - '_PermissionScreenState' is from 'package:spiritual_app/core/widgets/permission_screen.dart' ('lib/core/widgets/permission_screen.dart').
-Try correcting the name to the name of an existing getter, or defining a getter or field named 'SystemNavigator'.
-                  SystemNavigator.pop();
-                  ^^^^^^^^^^^^^^^
-lib/core/widgets/permission_screen.dart:139:21: Error: The getter 'SystemNavigator' isn't defined for the type '_PermissionScreenState'.
- - '_PermissionScreenState' is from 'package:spiritual_app/core/widgets/permission_screen.dart' ('lib/core/widgets/permission_screen.dart').
-Try correcting the name to the name of an existing getter, or defining a getter or field named 'SystemNavigator'.
-                    SystemNavigator.pop();
-                    ^^^^^^^^^^^^^^^
-lib/core/widgets/permission_screen.dart:154:11: Error: The getter 'SystemNavigator' isn't defined for the type '_PermissionScreenState'. 
- - '_PermissionScreenState' is from 'package:spiritual_app/core/widgets/permission_screen.dart' ('lib/core/widgets/permission_screen.dart').
-Try correcting the name to the name of an existing getter, or defining a getter or field named 'SystemNavigator'.
-          SystemNavigator.pop();
-          ^^^^^^^^^^^^^^^
-lib/core/widgets/permission_screen.dart:269:33: Error: The getter 'SystemNavigator' isn't defined for the type '_PermissionScreenState'. 
- - '_PermissionScreenState' is from 'package:spiritual_app/core/widgets/permission_screen.dart' ('lib/core/widgets/permission_screen.dart').
-Try correcting the name to the name of an existing getter, or defining a getter or field named 'SystemNavigator'.
-                                SystemNavigator.pop();
-                                ^^^^^^^^^^^^^^^
-warning: [options] source value 8 is obsolete and will be removed in a future release
-warning: [options] source value 8 is obsolete and will be removed in a future release
-warning: [options] target value 8 is obsolete and will be removed in a future release
-warning: [options] target value 8 is obsolete and will be removed in a future release
-warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.
-warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.
-3 warnings
-3 warnings
-warning: [options] source value 8 is obsolete and will be removed in a future release
-warning: [options] target value 8 is obsolete and will be removed in a future release
-warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.
-3 warnings
-Target kernel_snapshot_program failed: Exception
-
+Upgrading build.gradle
+Upgrading build.gradle
 
 FAILURE: Build failed with an exception.
 
 * What went wrong:
-Execution failed for task ':app:compileFlutterBuildDebug'.
-> Process 'command 'C:\flutter\flutter\bin\flutter.bat'' finished with non-zero exit value 1
+Execution failed for task ':app:checkDebugAarMetadata'.
+> A failure occurred while executing com.android.build.gradle.internal.tasks.CheckAarMetadataWorkAction
+   > 3 issues were found when checking AAR metadata:
+
+       1.  Dependency 'androidx.browser:browser:1.9.0' requires Android Gradle plugin 8.9.1 or higher.
+
+           This build currently uses Android Gradle plugin 8.6.0.
+
+       2.  Dependency 'androidx.core:core-ktx:1.17.0' requires Android Gradle plugin 8.9.1 or higher.
+
+           This build currently uses Android Gradle plugin 8.6.0.
+
+       3.  Dependency 'androidx.core:core:1.17.0' requires Android Gradle plugin 8.9.1 or higher.
+
+           This build currently uses Android Gradle plugin 8.6.0.
 
 * Try:
 > Run with --stacktrace option to get the stack trace.
@@ -68,6 +26,6 @@ Execution failed for task ':app:compileFlutterBuildDebug'.
 > Run with --scan to get full insights.
 > Get more help at https://help.gradle.org.
 
-BUILD FAILED in 2m
-Running Gradle task 'assembleDebug'...                            121.9s
+BUILD FAILED in 19s
+Running Gradle task 'assembleDebug'...                             20.6s
 Gradle task assembleDebug failed with exit code 1
