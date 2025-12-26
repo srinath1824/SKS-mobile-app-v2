@@ -1,0 +1,18 @@
+FAILURE: Build failed with an exception.
+
+* Where:
+Build file 'E:\SKS\SKS-mobile-app-v2\android\build.gradle.kts' line: 19
+
+* What went wrong:
+A problem occurred configuring project ':app'.
+> Conflicting configuration : 'armeabi-v7a,arm64-v8a,x86_64' in ndk abiFilters cannot be present when splits abi filters are set : armeabi-v7a,arm64-v8a
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 21s
+Running Gradle task 'assembleRelease'...                           22.6s
+Gradle task assembleRelease failed with exit code 1
