@@ -1,24 +1,20 @@
-rmdir /s /q C:\Users\VENKAT\.gradle\caches
-rmdir /s /q %USERPROFILE%\.gradle\caches
-Try `flutter pub outdated` for more information.
+PS E:\SKS\SKS-mobile-app-v2> flutter build apk --debug
 Upgrading build.gradle
 Upgrading build.gradle
 
 FAILURE: Build failed with an exception.
 
 * What went wrong:
-Could not open settings generic class cache for settings file 'E:\SKS\SKS-mobile-app-v2\android\settings.gradle' (C:\Users\VENKAT\.gradle\caches\8.0\scripts\atela96axqg43j44c0ddz9ezy).
+Could not open settings generic class cache for settings file 'E:\SKS\SKS-mobile-app-v2\android\settings.gradle' (C:\Users\VENKAT\.gradle\caches\6.7\scripts\czxlc9pw86k6z8svfseabmekh).
 > BUG! exception in phase 'semantic analysis' in source unit '_BuildScript_' Unsupported class file major version 65
 
 * Try:
-> Run with --stacktrace option to get the stack trace.
-> Run with --info or --debug option to get more log output.
-> Run with --scan to get full insights.
+Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.
 
 * Get more help at https://help.gradle.org
 
-BUILD FAILED in 40s
-Running Gradle task 'assembleRelease'...                           41.0s
+BUILD FAILED in 1s
+Running Gradle task 'assembleDebug'...                           1,943ms
 
 ┌─ Flutter Fix ────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 │ [!] Your project's Gradle version is incompatible with the Java version that Flutter is using for Gradle.                    │
@@ -31,4 +27,4 @@ Running Gradle task 'assembleRelease'...                           41.0s
 │                                                                                                                              │
 │                                                                                                                              │
 └──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
-Gradle task assembleRelease failed with exit code 1
+Gradle task assembleDebug failed with exit code 1
