@@ -1,6 +1,7 @@
 class AppConstants {
   // App Info
-  static const String appName = 'SKS';
+  static const String appName = 'Siva Kundalini Sadhana';
+  static const String appShortName = 'SKS';
   
   // Navigation
   static const String homeRoute = '/';
@@ -9,10 +10,22 @@ class AppConstants {
   static const String eventsRoute = '/events';
   static const String notificationsRoute = '/notifications';
   
-  // Mock Data
+  // Image Assets
   static const String gurujiImageUrl = 'assets/images/Guruji_Meditation.PNG';
+  static const String gurujiLogoUrl = 'assets/images/Guruji_logo.JPG';
+  static const String gurujiSmileUrl = 'assets/images/Guruji_smile.jpeg';
+  static const String kallaBairavaUrl = 'assets/images/kalla_bairava.jpeg';
+  static const String gurujiMainUrl = 'assets/images/Guruji.JPG';
   
-  static const String aboutGuruji = '''Our revered Guru is an enlightened Sadguru who has dedicated over three decades to the study and practice of Kundalini Sadhana. Having attained the highest states of consciousness, the Guru now shares this divine knowledge to help humanity transcend its limitations and realize its true potential.''';
+  // Coming Soon Messages
+  static const String comingSoonTitle = 'Coming Soon';
+  static const String comingSoonMessage = 'This feature is under development.\n\nStay tuned for amazing spiritual content and features that will enhance your spiritual journey!';
+  static const String stayTunedMessage = 'We are working hard to bring you the best spiritual experience.';
+  
+  // About Guruji
+  static const String aboutGuruji = '''Our revered Guru is an enlightened Sadguru who has dedicated over three decades to the study and practice of Kundalini Sadhana. Having attained the highest states of consciousness, the Guru now shares this divine knowledge to help humanity transcend its limitations and realize its true potential.
+
+Through deep meditation and spiritual practices, our Guru guides disciples on the path of self-realization, helping them awaken their dormant spiritual energy and achieve lasting peace and bliss.''';
   
   static const List<String> dailyQuotes = [
     'Meditation is the most natural state of mind.',
@@ -21,19 +34,22 @@ class AppConstants {
     'There is no difference between Siva and Shakthi; Siva is Shakthi and Shakthi is Siva.',
     'You are already enlightened, just realize it.',
     'Meditation is Medication!',
-    'Spirituality is Practicality!'
+    'Spirituality is Practicality!',
+    'The divine light within you is waiting to be awakened.',
+    'In silence, you will find your true self.',
+    'Kundalini is the key to unlock your infinite potential.'
   ];
   
   static const List<Map<String, String>> meditationMusic = [
-    {'title': 'Daily Meditation (15 min)', 'duration': '15:00', 'url': 'assets/audio/Sivoham_Mantra_15min_guided_Meditation.mp3'},
-    {'title': 'Daily Meditation (10 min)', 'duration': '10:00', 'url': 'assets/audio/Sivoham_Mantra_10min_guided_Meditation.mp3'},
+    {'title': 'Daily Meditation (15 min)', 'duration': '15:00', 'url': 'assets/audio/Sivoham_Mantra_15min_guided_Meditation.mp3', 'description': 'Guided meditation with Sivoham mantra'},
+    {'title': 'Daily Meditation (10 min)', 'duration': '10:00', 'url': 'assets/audio/Sivoham_Mantra_10min_guided_Meditation.mp3', 'description': 'Short guided meditation session'},
   ];
   
   static const List<Map<String, String>> bhajans = [
-    {'title': 'Gundello gudi', 'artist': 'Divine Voices', 'imageUrl': 'assets/images/Guruji_smile.jpeg', 'url': 'assets/audio/Gundello_gudi_song.mp3'},
-    {'title': 'Nirvana Shatkam', 'artist': 'Sacred Sounds', 'imageUrl': 'assets/images/Guruji_Meditation.PNG', 'url': 'assets/audio/Nirvana_Shatkam_song.mp3'},
-    {'title': 'Jeeveswara yogi taluva', 'artist': 'Temple Bells', 'imageUrl': 'assets/images/Guruji_logo.JPG', 'url': 'assets/audio/Jeeveswara_yogi_taluva_song.mp3'},
-    {'title': 'Pralaya kala beekara', 'artist': 'Sacred Chants', 'imageUrl': 'assets/images/Guruji_Meditation.PNG', 'url': 'assets/audio/Pralaya_kala_beekara_song.mp3'},
+    {'title': 'Gundello Gudi', 'artist': 'Divine Voices', 'imageUrl': 'assets/images/Guruji_smile.jpeg', 'url': 'assets/audio/Gundello_gudi_song.mp3', 'description': 'Sacred devotional song'},
+    {'title': 'Nirvana Shatkam', 'artist': 'Sacred Sounds', 'imageUrl': 'assets/images/Guruji_Meditation.PNG', 'url': 'assets/audio/Nirvana_Shatkam_song.mp3', 'description': 'Classical spiritual chant'},
+    {'title': 'Jeeveswara Yogi Taluva', 'artist': 'Temple Bells', 'imageUrl': 'assets/images/Guruji_logo.JPG', 'url': 'assets/audio/Jeeveswara_yogi_taluva_song.mp3', 'description': 'Traditional devotional hymn'},
+    {'title': 'Pralaya Kala Beekara', 'artist': 'Sacred Chants', 'imageUrl': 'assets/images/kalla_bairava.jpeg', 'url': 'assets/audio/Pralaya_kala_beekara_song.mp3', 'description': 'Powerful Shiva mantra'},
   ];
   
   static const List<Map<String, String>> experienceVideos = [

@@ -64,9 +64,13 @@ class YouTubeVideoPlayer extends StatelessWidget {
                   ElevatedButton.icon(
                     onPressed: () async {
                       final url = 'https://www.youtube.com/watch?v=$videoId';
-                      if (await canLaunchUrl(Uri.parse(url))) {
-                        await launchUrl(Uri.parse(url));
-                      }
+                      // if (await canLaunchUrl(Uri.parse(url))) {  // Temporarily disabled for APK build
+                      //   await launchUrl(Uri.parse(url));
+                      // }
+                      // Temporarily show a message instead
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('External links temporarily disabled')),
+                      );
                     },
                     icon: const Icon(Icons.play_arrow),
                     label: const Text('Watch on YouTube'),

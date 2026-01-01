@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:share_plus/share_plus.dart';
-import 'package:url_launcher/url_launcher.dart';
+// import 'package:share_plus/share_plus.dart';  // Temporarily removed for APK build
+import 'package:url_launcher/url_launcher.dart';  // Re-added for YouTube links
 import '../../core/constants/app_constants.dart';
 import '../../core/theme/app_theme.dart';
 import '../../core/widgets/section_header.dart';
 import '../../core/widgets/shimmer_loading.dart';
-import '../../core/widgets/audio_player_widget.dart';
-import '../../core/widgets/playlist_player_widget.dart';
+import '../../core/widgets/audio_player_widget_placeholder.dart';
+import '../../core/widgets/playlist_player_widget_placeholder.dart';
 import '../../core/widgets/youtube_video_player.dart';
 import '../../core/widgets/optimized_network_image.dart';
 import '../../core/utils/performance_utils.dart';
+// import '../../core/services/playlist_audio_service.dart';  // Temporarily removed for APK build
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -23,7 +25,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
   bool _showFullAbout = false;
   int _currentQuoteIndex = 0;
-  late AnimationController _glowController;
+  AnimationController? _glowController;
   bool _showAudioPlayer = false;
   bool _showPlaylistPlayer = false;
   String _currentAudioTitle = '';
@@ -32,91 +34,126 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   @override
   void initState() {
     super.initState();
-    _glowController = AnimationController(
-      vsync: this,
-      duration: PerformanceUtils.shouldReduceAnimations() 
-          ? const Duration(seconds: 3)
-          : const Duration(seconds: 2),
-    );
-    
-    if (PerformanceUtils.supportsAdvancedGraphics()) {
-      _glowController.repeat(reverse: true);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _initializeAnimation();
+    });
+  }
+
+  void _initializeAnimation() {
+    try {
+      _glowController = AnimationController(
+        vsync: this,
+        duration: PerformanceUtils.shouldReduceAnimations() 
+            ? const Duration(seconds: 3)
+            : const Duration(seconds: 2),
+      );
+      
+      if (PerformanceUtils.supportsAdvancedGraphics()) {
+        _glowController?.repeat(reverse: true);
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        debugPrint('Animation controller initialization failed: $e');
+      }
     }
   }
 
   @override
   void dispose() {
-    _glowController.dispose();
+    try {
+      _glowController?.dispose();
+    } catch (e) {
+      if (kDebugMode) {
+        debugPrint('Animation controller dispose failed: $e');
+      }
+    }
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildGurujiSection(),
-            _buildAboutSection(),
-            _buildDailyQuotes(),
-            _buildMeditationMusic(),
-            _buildBhajans(),
-            _buildExperienceVideos(),
-            _buildRecommendedSection(),
-            _buildUpcomingPrograms(),
-            SizedBox(height: _showAudioPlayer || _showPlaylistPlayer ? 200 : 24),
-          ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _buildGurujiSection(),
+              _buildAboutSection(),
+              _buildDailyQuotes(),
+              _buildMeditationMusic(),
+              _buildBhajans(),
+              _buildExperienceVideos(),
+              _buildRecommendedSection(),
+              _buildUpcomingPrograms(),
+              SizedBox(height: _showAudioPlayer || _showPlaylistPlayer ? 200 : 24),
+            ],
+          ),
         ),
       ),
       bottomSheet: _showAudioPlayer
           ? AudioPlayerWidget(
               title: _currentAudioTitle,
-              assetPath: _currentAudioPath,
-              onClose: () => setState(() => _showAudioPlayer = false),
+              subtitle: 'Audio coming soon',
             )
           : _showPlaylistPlayer
               ? PlaylistPlayerWidget(
-                  playlist: AppConstants.bhajans,
-                  onClose: () => setState(() => _showPlaylistPlayer = false),
+                  songs: AppConstants.bhajans,
                 )
               : null,
     );
   }
 
   Widget _buildGurujiSection() {
+    final screenSize = MediaQuery.of(context).size;
+    final isSmallScreen = screenSize.height < 700;
+    final sectionHeight = isSmallScreen ? 300.0 : 400.0;
+    
     return Container(
-      height: 400,
+      height: sectionHeight,
       child: Stack(
         children: [
-          AnimatedBuilder(
-            animation: _glowController,
-            builder: (context, child) {
-              return Container(
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppTheme.gold.withOpacity(0.2 + _glowController.value * 0.2),
-                      blurRadius: 40,
-                      spreadRadius: 10,
-                    ),
-                  ],
+          if (_glowController != null)
+            AnimatedBuilder(
+              animation: _glowController!,
+              builder: (context, child) {
+                return Container(
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppTheme.gold.withOpacity(0.2 + _glowController!.value * 0.2),
+                        blurRadius: 40,
+                        spreadRadius: 10,
+                      ),
+                    ],
+                  ),
+                  child: child,
+                );
+              },
+              child: Image.asset(
+                AppConstants.gurujiImageUrl,
+                fit: BoxFit.cover,
+                width: double.infinity,
+                errorBuilder: (context, error, stackTrace) => Container(
+                  color: AppTheme.beige,
+                  child: const Center(
+                    child: Icon(Icons.person, size: 100, color: AppTheme.saffron),
+                  ),
                 ),
-                child: child,
-              );
-            },
-            child: Image.asset(
+              ),
+            )
+          else
+            Image.asset(
               AppConstants.gurujiImageUrl,
               fit: BoxFit.cover,
               width: double.infinity,
               errorBuilder: (context, error, stackTrace) => Container(
                 color: AppTheme.beige,
-                child: Center(
+                child: const Center(
                   child: Icon(Icons.person, size: 100, color: AppTheme.saffron),
                 ),
               ),
             ),
-          ),
           Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -181,14 +218,14 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
         SectionHeader(title: 'Daily Wisdom'),
         CarouselSlider(
           options: CarouselOptions(
-            height: 200,
+            height: MediaQuery.of(context).size.height < 700 ? 180 : 200,
             autoPlay: true,
             autoPlayInterval: PerformanceUtils.shouldReduceAnimations() 
                 ? const Duration(seconds: 8) 
                 : const Duration(seconds: 5),
             autoPlayAnimationDuration: PerformanceUtils.getAnimationDuration(),
             enlargeCenterPage: true,
-            viewportFraction: 0.9,
+            viewportFraction: MediaQuery.of(context).size.width < 400 ? 0.95 : 0.9,
             onPageChanged: (index, reason) {
               setState(() => _currentQuoteIndex = index);
             },
@@ -229,7 +266,13 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                         right: 8,
                         child: IconButton(
                           icon: Icon(Icons.share, color: Colors.white),
-                          onPressed: () => Share.share(quote),
+                          // onPressed: () => Share.share(quote),  // Temporarily disabled for APK build
+                          onPressed: () {
+                            // TODO: Implement sharing when share_plus is enabled
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content: Text('Sharing functionality temporarily disabled')),
+                            );
+                          },
                         ),
                       ),
                     ],
@@ -276,27 +319,91 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 width: 280,
                 margin: EdgeInsets.only(right: 12),
                 child: Card(
-                  child: ListTile(
-                    leading: Container(
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        gradient: AppTheme.saffronGradient,
-                        borderRadius: BorderRadius.circular(8),
+                  clipBehavior: Clip.antiAlias,
+                  child: InkWell(
+                    onTap: () {
+                      setState(() {
+                        _currentAudioTitle = music['title']!;
+                        _currentAudioPath = music['url']!;
+                        _showAudioPlayer = true;
+                        _showPlaylistPlayer = false;
+                      });
+                    },
+                    child: ListTile(
+                      leading: Container(
+                        width: 50,
+                        height: 50,
+                        decoration: BoxDecoration(
+                          gradient: AppTheme.saffronGradient,
+                          borderRadius: BorderRadius.circular(8),
+                          boxShadow: [
+                            BoxShadow(
+                              color: AppTheme.saffron.withOpacity(0.3),
+                              blurRadius: 8,
+                              spreadRadius: 1,
+                            ),
+                          ],
+                        ),
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            Icon(Icons.headphones, color: Colors.white, size: 24),
+                            Positioned(
+                              bottom: 2,
+                              right: 2,
+                              child: Container(
+                                width: 16,
+                                height: 16,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  shape: BoxShape.circle,
+                                  border: Border.all(color: AppTheme.saffron, width: 1),
+                                ),
+                                child: Icon(
+                                  Icons.play_arrow,
+                                  color: AppTheme.saffron,
+                                  size: 10,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                      child: Icon(Icons.music_note, color: Colors.white),
-                    ),
-                    title: Text(music['title']!),
-                    subtitle: Text(music['duration']!),
-                    trailing: IconButton(
-                      icon: Icon(Icons.play_arrow, color: AppTheme.saffron),
-                      onPressed: () {
-                        setState(() {
-                          _currentAudioTitle = music['title']!;
-                          _currentAudioPath = music['url']!;
-                          _showAudioPlayer = true;
-                        });
-                      },
+                      title: Text(
+                        music['title']!,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 14,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      subtitle: Row(
+                        children: [
+                          Icon(
+                            Icons.music_note,
+                            size: 14,
+                            color: AppTheme.saffron,
+                          ),
+                          const SizedBox(width: 4),
+                          Text(
+                            music['duration']!,
+                            style: TextStyle(
+                              color: AppTheme.darkBrown.withOpacity(0.7),
+                              fontSize: 12,
+                            ),
+                          ),
+                          const Spacer(),
+                          Text(
+                            'Tap to play',
+                            style: TextStyle(
+                              color: AppTheme.saffron,
+                              fontSize: 11,
+                              fontStyle: FontStyle.italic,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -313,7 +420,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       children: [
         SectionHeader(title: 'Songs & Bhajans'),
         SizedBox(
-          height: 200,
+          height: 220,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             padding: EdgeInsets.symmetric(horizontal: 16),
@@ -325,47 +432,158 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 margin: EdgeInsets.only(right: 12),
                 child: Card(
                   clipBehavior: Clip.antiAlias,
+                  elevation: 4,
                   child: InkWell(
                     onTap: () {
                       setState(() {
-                        _showAudioPlayer = false;
-                        _showPlaylistPlayer = true;
+                        _currentAudioTitle = bhajan['title']!;
+                        _currentAudioPath = bhajan['url']!;
+                        _showAudioPlayer = true;
+                        _showPlaylistPlayer = false;
                       });
                     },
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Image.asset(
-                          bhajan['imageUrl']!,
-                          height: 120,
-                          width: double.infinity,
-                          fit: BoxFit.cover,
-                          errorBuilder: (context, error, stackTrace) => Container(
-                            height: 120,
-                            color: AppTheme.beige,
-                            child: Icon(Icons.music_note, size: 40, color: AppTheme.saffron),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                bhajan['title']!,
-                                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                  fontWeight: FontWeight.w600,
+                        Stack(
+                          children: [
+                            Image.asset(
+                              bhajan['imageUrl']!,
+                              height: 120,
+                              width: double.infinity,
+                              fit: BoxFit.cover,
+                              errorBuilder: (context, error, stackTrace) => Container(
+                                height: 120,
+                                decoration: BoxDecoration(
+                                  gradient: AppTheme.saffronGradient,
                                 ),
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
+                                child: Icon(
+                                  Icons.music_note,
+                                  size: 40,
+                                  color: Colors.white,
+                                ),
                               ),
-                              Text(
-                                bhajan['artist']!,
-                                style: Theme.of(context).textTheme.bodySmall,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
+                            ),
+                            // Music indicator overlay
+                            Positioned(
+                              top: 8,
+                              right: 8,
+                              child: Container(
+                                padding: EdgeInsets.all(4),
+                                decoration: BoxDecoration(
+                                  color: Colors.black.withOpacity(0.7),
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Icon(
+                                      Icons.music_note,
+                                      color: Colors.white,
+                                      size: 12,
+                                    ),
+                                    const SizedBox(width: 2),
+                                    Text(
+                                      'MUSIC',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 8,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ],
+                            ),
+                            // Play button overlay
+                            Positioned(
+                              bottom: 8,
+                              right: 8,
+                              child: Container(
+                                width: 32,
+                                height: 32,
+                                decoration: BoxDecoration(
+                                  gradient: AppTheme.saffronGradient,
+                                  shape: BoxShape.circle,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(0.3),
+                                      blurRadius: 4,
+                                      offset: Offset(0, 2),
+                                    ),
+                                  ],
+                                ),
+                                child: Icon(
+                                  Icons.play_arrow,
+                                  color: Colors.white,
+                                  size: 16,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      bhajan['title']!,
+                                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 13,
+                                      ),
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                    const SizedBox(height: 2),
+                                    Text(
+                                      bhajan['artist']!,
+                                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                        fontSize: 11,
+                                      ),
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ],
+                                ),
+                                Container(
+                                  padding: EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                                  decoration: BoxDecoration(
+                                    color: AppTheme.saffron.withOpacity(0.1),
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: Border.all(
+                                      color: AppTheme.saffron.withOpacity(0.3),
+                                      width: 1,
+                                    ),
+                                  ),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Icon(
+                                        Icons.touch_app,
+                                        size: 10,
+                                        color: AppTheme.saffron,
+                                      ),
+                                      const SizedBox(width: 2),
+                                      Text(
+                                        'Tap to play',
+                                        style: TextStyle(
+                                          color: AppTheme.saffron,
+                                          fontSize: 9,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ],
@@ -509,9 +727,13 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
             child: ElevatedButton.icon(
               onPressed: () async {
                 final url = Uri.parse(AppConstants.youtubeChannelUrl);
-                if (await canLaunchUrl(url)) {
-                  await launchUrl(url, mode: LaunchMode.externalApplication);
-                }
+                // if (await canLaunchUrl(url)) {  // Temporarily disabled for APK build
+                //   await launchUrl(url, mode: LaunchMode.externalApplication);
+                // }
+                // Temporarily show a message instead
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('External links temporarily disabled')),
+                );
               },
               icon: Icon(Icons.play_circle_filled, color: Colors.white),
               label: Text('Visit YouTube Channel', style: TextStyle(color: Colors.white)),

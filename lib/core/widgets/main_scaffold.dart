@@ -26,10 +26,10 @@ class _MainScaffoldState extends State<MainScaffold> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Siva Kundalini Sadhana'),
+        title: const Text('Siva Kundalini Sadhana'),
         actions: [
           IconButton(
-            icon: Icon(Icons.notifications_outlined),
+            icon: const Icon(Icons.notifications_outlined),
             onPressed: () => context.push('/notifications'),
           ),
         ],
@@ -41,7 +41,7 @@ class _MainScaffoldState extends State<MainScaffold> {
             BoxShadow(
               color: AppTheme.darkBrown.withOpacity(0.1),
               blurRadius: 8,
-              offset: Offset(0, -2),
+              offset: const Offset(0, -2),
             ),
           ],
         ),
@@ -52,8 +52,8 @@ class _MainScaffoldState extends State<MainScaffold> {
           backgroundColor: AppTheme.white,
           selectedItemColor: AppTheme.saffron,
           unselectedItemColor: AppTheme.darkBrown.withOpacity(0.6),
-          selectedLabelStyle: TextStyle(fontWeight: FontWeight.w600),
-          items: [
+          selectedLabelStyle: const TextStyle(fontWeight: FontWeight.w600),
+          items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.home_outlined),
               activeIcon: Icon(Icons.home),

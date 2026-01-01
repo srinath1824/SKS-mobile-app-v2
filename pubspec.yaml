@@ -10,12 +10,6 @@ dependencies:
   flutter:
     sdk: flutter
   
-  # Permissions
-  permission_handler: ^11.0.1
-  
-  # Device Info
-  device_info_plus: ^9.1.1
-  
   # State Management
   flutter_bloc: ^8.1.3
   equatable: ^2.0.5
@@ -27,35 +21,35 @@ dependencies:
   cached_network_image: ^3.3.0
   shimmer: ^3.0.0
   carousel_slider: ^5.0.0
-  flutter_svg: ^2.0.9
-  google_fonts: ^6.1.0
+  # flutter_svg: ^2.0.9  # Temporarily removed
+  # google_fonts: ^6.1.0  # Temporarily removed
   
   # Utilities
   intl: ^0.18.1
-  share_plus: ^7.2.1
-  url_launcher: ^6.2.1
+  url_launcher: ^6.1.0  # Re-added for YouTube and social links
+  # share_plus: ^7.2.0  # Temporarily removed for APK build
   
-  # Video
-  # youtube_player_flutter: ^8.1.2
-  
-  # Audio
+  # Audio 
   just_audio: ^0.9.36
-  audio_service: ^0.18.12
-  audio_session: ^0.1.16
   
   # DI
   get_it: ^7.6.4
   
   # API (future)
-  dio: ^5.4.0
+  # dio: ^5.4.0  # Temporarily removed
   
   cupertino_icons: ^1.0.6
+
+# dependency_overrides:
+#   # Override androidx dependencies to compatible versions
+#   # This helps with Android Gradle Plugin compatibility issues
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.0
-  flutter_launcher_icons: ^0.14.4
+  # Temporarily removed to reduce APK size - will re-add when needed
+  # flutter_launcher_icons: ^0.14.4
 
 flutter:
   uses-material-design: true
@@ -64,9 +58,11 @@ flutter:
     - assets/images/
     - assets/audio/
 
-flutter_launcher_icons:
-  android: true
-  ios: false
-  image_path: "assets/images/Guruji_logo.JPG"
-  adaptive_icon_background: "#FFFBF5"
-  adaptive_icon_foreground: "assets/images/Guruji_logo.JPG"
+# Launcher icons temporarily disabled to reduce APK size
+# Uncomment and configure when app is ready for production:
+# flutter_launcher_icons:
+#   android: true
+#   ios: false
+#   image_path: "assets/images/Guruji_logo.JPG"
+#   adaptive_icon_background: "#FFFBF5"
+#   adaptive_icon_foreground: "assets/images/Guruji_logo.JPG"
